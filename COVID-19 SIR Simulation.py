@@ -59,3 +59,34 @@ class Virus():
         self.severe_slow = params["incubation"] + params["severe_recovery"][1]
         self.death_fast = params["incubation"] + params["severe_death"][0]
         self.death_slow = params["incubation"] + params["severe_death"][1]
+
+        self.mild = {i: {"thetas": [], "rs": []} for i in range(self.mild_fast, 365)}
+        self.severe = {
+            "recovery": {i: {"thetas": [], "rs": []} for i in range(self.severe_fast, 365)},
+            "death": {i: {"thetas": [], "rs": []} for i in range(self.death_fast, 365)}
+        }
+
+        self.exposed_before = 0
+        self.exposed_after = 1
+
+        self.initial_population()
+
+
+    def initial_population(self):
+        
+        population = 4500
+        self.num_currently_infected = 1
+        self.total_num_infected = 1
+        indices = np.arange(0, population) + 0.5
+        self.thetas = np.pi * (1 + 5**0.5) * indices
+        self.rs = np.sqrt(indices / population)
+        self.plot = self.axes.scatter(self.thetas, self.rs, s=5, color=GREY)
+        
+        # patient zero
+        self.axes.scatter(self.thetas[0], self.rs[0], s=5, color=RED)
+        self.mild[self.mild_fast]["thetas"].append(self.thetas[0])
+        self.mild[self.mild_fast]["rs"].append(self.rs[0])
+
+
+Virus(COVID19_PARAMS)
+plt.show()
