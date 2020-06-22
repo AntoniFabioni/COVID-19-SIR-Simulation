@@ -55,3 +55,10 @@ class Virus():
         self.percent_severe = params["percent_severe"]
         self.fatality_rate = params["fatality_rate"]
         self.serial_interval = params["serial_interval"]
+
+        self.mild_fast = params["incubation"] + params["mild_recovery"][0]
+        self.mild_slow = params["incubation"] + params["mild_recovery"][1]
+        self.severe_fast = params["incubation"] + params["severe_recovery"][0]
+        self.severe_slow = params["incubation"] + params["severe_recovery"][1]
+        self.death_fast = params["incubation"] + params["severe_death"][0]
+        self.death_slow = params["incubation"] + params["severe_death"][1]
