@@ -11,10 +11,11 @@ COVID19_PARAMS = {
     "r0": 2.28,
     "incubation": 5,
     "percent_mild": 0.8,
+    "mild_recovery": (7, 14),
     "percent_severe": 0.2,
     "severe_recovery": (21, 42),
     "severe_death": (14, 56),
-    "fatality_rate": 0.034
+    "fatality_rate": 0.034,
     "serial_interval": 7
 }
 
@@ -32,17 +33,13 @@ class Virus():
 
         # Create annotations
         self.day_text = self.axes.annotate(
-            "Day 0", xy=[np.pi / 2, 1], ha="center". va="bottom"
-        )
+            "Day 0", xy=[np.pi / 2, 1], ha="center", va="bottom")
         self.infected_text = self.axes.annotate(
-            "Infected: 0", xy=[3 * np.pi / 2, 1], ha="center". va="top", color=RED
-        )
+            "Infected: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=RED)
         self.deaths_text = self.axes.annotate(
-            "\nDeaths: 0", xy=[3 * np.pi / 2, 1], ha="center". va="top", color=BLACK
-        )
+            "\nDeaths: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=BLACK)
         self.recovered_text = self.axes.annotate(
-            "\n\nRecovered: 0", xy=[3 * np.pi / 2, 1], ha="center". va="top", color=GREEN
-        )
+            "\n\nRecovered: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=GREEN)
 
         # Create member variables
         self.day = 0
