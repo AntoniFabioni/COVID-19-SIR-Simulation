@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 GREY = (0.78, 0.78, 0.78)   # Suseptible
 RED = (0.96, 0.15, 0.15)    # Infected
-GREEN = (0, 0.86, 0.03)     # Recovered
+BLUE = (0.65, 0.87, 0.94)     # Recovered
 BLACK = (0, 0, 0)           # Dead
 
 COVID19_PARAMS = {
@@ -39,7 +39,7 @@ class Virus():
         self.deaths_text = self.axes.annotate(
             "\nDeaths: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=BLACK)
         self.recovered_text = self.axes.annotate(
-            "\n\nRecovered: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=GREEN)
+            "\n\nRecovered: 0", xy=[3 * np.pi / 2, 1], ha="center", va="top", color=BLUE)
 
         # Create member variables
         self.day = 0
@@ -189,13 +189,13 @@ class Virus():
         if self.day >= self.mild_fast:
             mild_thetas = self.mild[self.day]["thetas"]
             mild_rs = self.mild[self.day]["rs"]
-            self.axes.scatter(mild_thetas, mild_rs, s=5, color=GREEN)
+            self.axes.scatter(mild_thetas, mild_rs, s=5, color=BLUE)
             self.num_recovered += len(mild_thetas)
             self.num_currently_infected -= len(mild_thetas)
         if self.day >= self.severe_fast:
             rec_thetas = self.severe["recovery"][self.day]["thetas"]
             rec_rs = self.severe["recovery"][self.day]["rs"]
-            self.axes.scatter(rec_thetas, rec_rs, s=5, color=GREEN)
+            self.axes.scatter(rec_thetas, rec_rs, s=5, color=BLUE)
             self.num_recovered += len(rec_thetas)
             self.num_currently_infected -= len(rec_thetas)
         if self.day >= self.death_fast:
