@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 GREY = (0.78, 0.78, 0.78)   # Suseptible
 RED = (0.96, 0.15, 0.15)    # Infected
-BLUE = (0.65, 0.87, 0.94)     # Recovered
+BLUE = (0.20, 0.80, 1.00)     # Recovered
 BLACK = (0, 0, 0)           # Dead
 
 COVID19_PARAMS = {
@@ -73,7 +73,6 @@ class Virus():
 
 
     def initial_population(self):
-        
         population = 4500
         self.num_currently_infected = 1
         self.total_num_infected = 1
@@ -146,8 +145,10 @@ class Virus():
     def assign_symptoms(self):
         num_mild = round(self.percent_mild * self.num_new_infected)
         num_severe = round(self.percent_severe * self.num_new_infected)
+
         # choose random subset of newly infected to have mild symptoms
         self.mild_indices = np.random.choice(self.new_infected_indices, num_mild, replace=False)
+        
         # assign the rest severe symptoms, either resulting in recovery or death
         remaining_indices = [i for i in self.new_infected_indices if i not in self.mild_indices]
         percent_severe_recovery = 1 - (self.fatality_rate / self.percent_severe)
